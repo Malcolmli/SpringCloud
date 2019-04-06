@@ -1,8 +1,10 @@
 package com.imooc.ad.service;
 
 import com.imooc.ad.Application;
+import com.imooc.ad.constant.CreativeType;
 import com.imooc.ad.exception.AdException;
 import com.imooc.ad.vo.AdPlanGetRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import java.util.Collections;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class},
         webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@Slf4j
 public class AdPlanServiceTest {
 
     @Autowired
@@ -30,5 +33,24 @@ public class AdPlanServiceTest {
                         new AdPlanGetRequest(15L, Collections.singletonList(10L))
                 )
         );
+    }
+
+    @Test
+    public void TestExample() {
+        Runtime run = Runtime.getRuntime();
+        log.info("[1]Max_Memory:" + run.maxMemory());
+        log.info("[1]Total_Memory:" + run.totalMemory());
+        log.info("[1]Free_Memory:" + run.freeMemory());
+        String str = "";
+        for (int i = 0; i < 30000; i++) {
+            str += i;
+        }
+        log.info("[1]Max_Memory:" + run.maxMemory());
+        log.info("[1]Total_Memory:" + run.totalMemory());
+        log.info("[1]Free_Memory:" + run.freeMemory());
+        run.gc();
+        log.info("[1]Max_Memory:" + run.maxMemory());
+        log.info("[1]Total_Memory:" + run.totalMemory());
+        log.info("[1]Free_Memory:" + run.freeMemory());
     }
 }
